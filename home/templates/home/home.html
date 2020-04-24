@@ -1,11 +1,15 @@
 {% extends "home/base.html" %}
 {% block content %}
+    {% for post in posts %}
         <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
-              <h1>Welcome To Mifga-7!</h1>
+              <small class="text-muted">#{{ post.id }}, </small>
+              <small class="text-muted">{{ post.date_posted|date:" d-F-Y" }}</small>
             </div>
-            <h7>hello! test test</h7>
+            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.content }}</p>
           </div>
         </article>
+    {% endfor %}
 {% endblock content %}

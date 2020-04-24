@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Post
 
 def home(request):
-    context = {}
-    return render(request, 'home/home.html', context) 
+    var = {
+        'posts': Post.objects.all()
+    }
+    return render(request, 'home/home.html', var) 
 
 def contact(request):
-    context = {}
-    return render(request, 'home/contact.html', context) 
+    return render(request, 'home/contact.html') 
 
 def help(request):
-    context = {}
-    return render(request, 'home/help.html', context) 
+    return render(request, 'home/help.html') 
