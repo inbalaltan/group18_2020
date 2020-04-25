@@ -2,11 +2,11 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+      <div class="media"> 
         <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
+          <h4>Logged in as: {{ user.username }}</h4>
+          <p class="text-secondary"><b>Name:</b> {{ user.first_name}} {{user.last_name}} </p>
+          <p class="text-secondary"><b>email:</b> {{ user.email }}</p>
         </div>
       </div>
       <!-- FORM HERE -->

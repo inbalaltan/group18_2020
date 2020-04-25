@@ -3,9 +3,7 @@ from django.http import HttpResponse
 from .models import Post
 
 def home(request):
-    var = {
-        'posts': Post.objects.all()
-    }
+    var = {'posts': Post.objects.all().order_by('-date_posted')}
     return render(request, 'home/home.html', var) 
 
 def contact(request):
