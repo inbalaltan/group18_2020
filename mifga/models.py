@@ -20,6 +20,7 @@ class Mifga(models.Model):
     neighborhood = models.CharField(max_length=25, default='0')
     status = models.CharField(max_length = 255,choices=status_choices, default='open')
     obs_title = models.CharField(max_length = 255,choices=obs_choices, default='אחר')
+    agent_att = models.ManyToManyField(User,related_name="Mifga.agent_att+")
     comment = models.TextField(default='None')
 
     def __str__(self):
