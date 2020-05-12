@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+
+staff = User.objects.filter(is_staff=True)
 status_choices = (
     ('open','OPEN'),('in progress','IN PROGRESS'),('closed','CLOSED'),
 )
@@ -20,7 +22,7 @@ class Mifga(models.Model):
     neighborhood = models.CharField(max_length=25, default='0')
     status = models.CharField(max_length = 255,choices=status_choices, default='open')
     obs_title = models.CharField(max_length = 255,choices=obs_choices, default='אחר')
-    agent_att = models.ManyToManyField(User,related_name="Mifga.agent_att+")
+    agent_att = models.ForeignKey(User,on_delete = models.CASCADE,related_name="Mifga.author+",default = "1")
     comment = models.TextField(default='None')
 
     def __str__(self):

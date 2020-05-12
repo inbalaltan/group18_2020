@@ -9,7 +9,6 @@ def mifga(request):
     if request.method == 'POST':
         author = Mifga(author=request.user)
         form = obsReport(request.POST, instance=author)
-        print(form)
         if form.is_valid():
             if validate_addresses(form):
                 ret_neighborhood = get_neighborhood(form)
