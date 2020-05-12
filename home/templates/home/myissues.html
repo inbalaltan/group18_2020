@@ -1,0 +1,24 @@
+{% extends "home/base.html" %}
+{% block content %}
+    {% for mifga in mifgas %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <small class="text-muted">#{{ mifga.id }}, </small>
+              <small class="text-muted">date posted: {{ mifga.date_posted|date:" d-F-Y" }}</small>
+              <small class="text-muted"><b> status: {{ mifga.status }} </b></small>
+            </div>
+            <h3>{{ mifga.title }}</h3>
+            <p class="article-content">{{ mifga.content }}</p>
+            <h6><B> Comment: </B> </h6>
+            <p class="article-content">{{ mifga.comment }}</p>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'my-issues-update' mifga.id %}">Update Comment</a>
+            <br>
+            <form method="POST">
+              {% csrf_token %}
+                <input value="{{ mifga.id }}" name= "id" hidden>
+                <button type="submit" class="btn" value="Click" name= "stat">Close Issue</button>
+            </form>
+        </article>
+    {% endfor %}
+{% endblock content %}
