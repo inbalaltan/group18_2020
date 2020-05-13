@@ -1,0 +1,23 @@
+{% extends "home/base.html" %}
+{% block content %}
+    {% for mifga in mifgas %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <small class="text-muted">#{{ mifga.id }}, </small>
+              <small class="text-muted">date posted: {{ mifga.date_posted|date:" d-F-Y" }}</small>
+              {% if mifga.status == 'closed' %}
+              <strong class="stat text-danger"> {{ mifga.status }} </b></strong>
+              {% else %}
+              <strong class="stat text-success"><b>{{ mifga.status }} </b></strong>
+              {% endif %}
+            </div>
+            <h3>{{ mifga.title }}</h3>
+            <p class="article-content">{{ mifga.content }}</p>
+            <div class="alert alert-info" role="alert">
+              <h7><u><B> Comment: </B> </u></h7>      
+            <p class="article-content">{{ mifga.comment }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

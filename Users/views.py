@@ -5,6 +5,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
+from mifga.models import Mifga
+from django.http import HttpResponse
+
+
 
 def register(request):
     if request.method == 'POST':
@@ -21,3 +25,8 @@ def register(request):
 @login_required
 def profile(request):
     return render(request, 'users/profile.html')
+
+@login_required
+def userissues(request):
+    var = {'mifgas': Mifga.objects.filter(author = request.user).order_by("-status")}
+    return render(request, 'users/userissues.html',var)

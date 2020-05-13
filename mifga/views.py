@@ -4,7 +4,9 @@ from django.shortcuts import render, redirect
 from .forms import obsReport
 from .models import Mifga
 import json
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def mifga(request):
     if request.method == 'POST':
         author = Mifga(author=request.user)
