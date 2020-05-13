@@ -24,7 +24,7 @@ def help(request):
 
 
 def open_reports(request):
-    var = {'mifgas': Mifga.objects.filter(status="open")}
+    var = {'mifgas': Mifga.objects.filter(status="open").order_by('-date_posted')}
     if(request.POST.get('assign')):
         id = request.POST.get("id")
         take_obs(request,id)
@@ -46,11 +46,11 @@ def myissues(request):
 
 def take_obs(request, obs_id):
     Mifga.objects.filter(id=obs_id).update(status = "in progress", agent_att = request.user)
-    messages.success(request, f'success')
+    messages.success(request, f'issue assigned to you successfully')
     return redirect('open-reports')
 
 def close_issue(request, obs_id):
     Mifga.objects.filter(id=obs_id).update(status = "closed")
-    messages.success(request, f'success')
+    messages.success(request, f'issue closed successfully')
     return redirect('my-issues')
 

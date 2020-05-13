@@ -6,6 +6,10 @@
             <div class="article-metadata">
               <small class="text-muted">#{{ post.id }}, </small>
               <small class="text-muted">{{ post.date_posted|date:" d-F-Y" }}</small>
+              {% now "d-F-Y" as today_date %}
+              {% if post.date_posted|date:"d-F-Y" == today_date  %}
+              <span class="badge badge-secondary">New Post</span>
+              {% endif %}
             </div>
             <h3>{{ post.title }}</h3>
             <p class="article-content">{{ post.content }}</p>

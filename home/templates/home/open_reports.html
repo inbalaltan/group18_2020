@@ -5,7 +5,12 @@
           <div class="media-body">
             <div class="article-metadata">
               <small class="text-muted">#{{ mifga.id }}, </small>
-              <small class="text-muted">date posted: {{ mifga.date_posted|date:" d-F-Y" }}</small>
+              <small class="text-muted"><u>posted by:</u> {{ mifga.author}}, </small>
+              <small class="text-muted"><u>date posted:</u> {{ mifga.date_posted|date:"d-F-Y" }}</small>
+              {% now "d-F-Y" as today_date %}
+              {% if mifga.date_posted|date:"d-F-Y" == today_date  %}
+              <span class="badge badge-secondary">New</span>
+              {% endif %}
             </div>
             <h3>{{ mifga.title }}</h3>
             <p class="article-content">{{ mifga.content }}</p>
