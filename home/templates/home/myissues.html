@@ -19,11 +19,13 @@
             <p class="article-content">{{ mifga.comment }}</p>
           </div>
             <a class="btn1 btn-secondary btn-sm mt-1 mb-1" href="{% url 'my-issues-update' mifga.id %}">Update Comment</a>
+            {% if mifga.status == "in progress"%}
             <form method="POST">
               {% csrf_token %}
                 <input value="{{ mifga.id }}" name= "id" hidden>
                 <button class = "btn btn-danger btn-sm mt-1 mb-1" type="submit" class="btn" value="Click" name= "stat">Close Issue</button>
             </form>
+            {% endif %}
         </article>
     {% endfor %}
 {% endblock content %}
