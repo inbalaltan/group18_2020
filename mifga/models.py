@@ -12,6 +12,7 @@ obs_choices = (
     ('בעלי חיים','בעלי חיים'),('גינון','גינון'),('חניה','חניה'),('חשמל ותאורה','חשמל ותאורה'),
     ('ביוב','ביוב'),('אחר','אחר'),
 )
+
 class Mifga(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
