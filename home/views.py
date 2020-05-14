@@ -41,6 +41,10 @@ def myissues(request):
         if(request.POST.get('stat')):
             id = request.POST.get("id")
             close_issue(request,id)
+        if(request.POST.get('sub')):
+            id = request.POST.get("id")
+            subj = request.POST.get('sub', 'default_if_not_found_value')
+            change_subject(request, id, subj)
         return render(request, 'home/myissues.html',var)
     raise Http404
 
@@ -53,3 +57,10 @@ def close_issue(request, obs_id):
     Mifga.objects.filter(id=obs_id).update(status = "closed")
     messages.success(request, f'issue closed successfully')
     return redirect('my-issues')
+
+def change_subject(request, obs_id, subj):
+    print(subj)
+    Mifga.objects.filter(id=obs_id).update(obs_title = subj)
+    messages.success(request, f'issue subject changed successfully')
+    return redirect('my-issues')
+
