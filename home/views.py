@@ -43,7 +43,7 @@ class myissuesUpdate(LoginRequiredMixin, UpdateView):
 @login_required
 def myissues(request):
     if request.user.is_staff:
-        var = {'mifgas': Mifga.objects.filter(agent_att = request.user).order_by("-status")}
+        var = {'mifgas': Mifga.objects.filter(agent_att = request.user).order_by("-status", '-date_posted')}
         if(request.POST.get('stat')):
             id = request.POST.get("id")
             close_issue(request,id)
@@ -65,7 +65,6 @@ def close_issue(request, obs_id):
     return redirect('my-issues')
 
 def change_subject(request, obs_id, subj):
-    print(subj)
     Mifga.objects.filter(id=obs_id).update(obs_title = subj)
     messages.success(request, f'issue subject changed successfully')
     return redirect('my-issues')

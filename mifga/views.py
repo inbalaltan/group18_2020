@@ -19,10 +19,10 @@ def mifga(request):
                     var.neighborhood = ret_neighborhood
                     var.save()
                 else:
-                    messages.error(request,f"unexpted error with neighborhood")
+                    messages.error(request,f"unexpected error with neighborhood")
                 form.save()
                 messages.success(request, f'your report has been submmited')
-                return redirect('home-page') 
+                return redirect('user-issues') 
             else:
                 messages.error(request, f'Please enter valid address')
     form = obsReport 
