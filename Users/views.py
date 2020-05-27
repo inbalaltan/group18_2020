@@ -28,5 +28,5 @@ def profile(request):
 
 @login_required
 def userissues(request):
-    var = {'mifgas': Mifga.objects.filter(author = request.user).order_by("-status")}
+    var = {'mifgas': Mifga.objects.filter(author = request.user).order_by("-status", '-date_posted')}
     return render(request, 'users/userissues.html',var)

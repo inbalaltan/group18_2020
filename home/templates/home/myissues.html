@@ -5,7 +5,8 @@
           <div class="media-body">
             <div class="article-metadata">
               <small class="text-muted">#{{ mifga.id }}, </small>
-              <small class="text-muted">date posted: {{ mifga.date_posted|date:" d-F-Y" }}</small>
+              <small class="text-muted">date posted: {{ mifga.date_posted|date:" d-F-Y" }}, </small>
+              <small class="text-muted">current topic: {{ mifga.obs_title}}</small>
               {% if mifga.status == 'closed' %}
               <strong class="stat text-danger"> {{ mifga.status }} </b></strong>
               {% else %}
@@ -24,6 +25,42 @@
               {% csrf_token %}
                 <input value="{{ mifga.id }}" name= "id" hidden>
                 <button class = "btn btn-danger btn-sm mt-1 mb-1" type="submit" class="btn" value="Click" name= "stat">Close Issue</button>
+            </form>
+            
+            <span class=" subj label info"> :שינוי נושא מפגע </span> 
+            <br>
+            <form action="{% url 'my-issues' %}" method="post">
+              {% csrf_token %}
+            <select id="sub" name="sub" class="subj btn-info btn-sm mt-1 mb-1 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <option value="רמזורים">
+                  רמזורים</option>
+                <option value="פארקים">
+                  פארקים</option>
+                <option value="מקלטים">
+                  מקלטים</option>
+                <option value="מצלמות">
+                  מצלמות</option>
+                <option value="מים">
+                  מים</option>
+                <option value="מוסדות חינוך">
+                  מוסדות חינוך</option>
+                <option value="כבישים ומדרכות">
+                  כבישים ומדרכות</option>
+                <option value="חשמל ותאורה">
+                  חשמל ותאורה</option>
+                <option value="גינון">
+                  גינון</option>
+                <option value="חניה">
+                  חניה</option>
+                <option value="בעלי חיים">
+                  בעלי חיים</option>
+                <option value="אחר">
+                  אחר</option>
+                <option value="ביוב">
+                  ביוב</option>
+            </select>
+            <input value="{{ mifga.id }}" name= "id" hidden>
+            <input type="submit" class="subj btn-info btn-sm mt-1 mb-1" value="submit">
             </form>
             {% endif %}
         </article>

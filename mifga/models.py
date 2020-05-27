@@ -26,9 +26,6 @@ class Mifga(models.Model):
     agent_att = models.ForeignKey(User,on_delete = models.CASCADE,related_name="Mifga.author+",default = "1")
     comment = models.TextField(default='')
 
-    def __str__(self):
-        return self.title
-
     def get_absolute_url(self):
         return reverse('my-issues')
 

@@ -89,3 +89,16 @@ a.article-title:hover {
 .stat {
   float: right
 }
+
+.subj {
+  position: relative;
+  width: 20%;
+  margin-left: 40%;
+  margin-right: 40%;
+  text-align: center;
+  top: -50px;
+}
+
+.text {
+  text-align: right;
+}
