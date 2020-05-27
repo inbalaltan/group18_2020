@@ -10,5 +10,5 @@ class obsReport(forms.ModelForm):
     house_number = forms.CharField(validators=[digits],help_text='only digits')
     class Meta:
         model = Mifga
-        fields = ['title','street','house_number','neighborhood','obs_title','content']
+        fields = ['title','street', 'house_number','neighborhood','obs_title','content']
         widgets = {'neighborhood': forms.HiddenInput()}

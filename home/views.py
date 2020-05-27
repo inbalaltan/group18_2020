@@ -18,6 +18,9 @@ def contact(request):
 def help(request):
     return render(request, 'home/help.html') 
 
+def ex(request):
+    return render(request, 'home/ex.html') 
+
 @login_required
 def open_reports(request):
     usr = User.objects.all()
