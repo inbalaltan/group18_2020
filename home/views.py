@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
+from django.core.mail import send_mail
 def home(request):
     var = {'posts': Post.objects.all().order_by('-date_posted')}
     return render(request, 'home/home.html', var) 
@@ -59,11 +59,17 @@ def myissues(request):
 
 def take_obs(request, obs_id):
     Mifga.objects.filter(id=obs_id).update(status = "in progress", agent_att = request.user)
+    get_user = Mifga.objects.get(id=obs_id).author
+    user_email = User.objects.get(username= get_user).email
+    send_email(user_email ,'in progress')
     messages.success(request, f'issue assigned to you successfully')
     return redirect('open-reports')
 
 def close_issue(request, obs_id):
     Mifga.objects.filter(id=obs_id).update(status = "closed")
+    get_user = Mifga.objects.get(id=obs_id).author
+    user_email = User.objects.get(username= get_user).email
+    send_email(user_email ,'closed')
     messages.success(request, f'issue closed successfully')
     return redirect('my-issues')
 
@@ -74,5 +80,17 @@ def change_subject(request, obs_id, subj):
 
 def change_assign(request, obs_id, worki):
     Mifga.objects.filter(id=obs_id).update(status = "in progress",agent_att = worki)
+    get_user = Mifga.objects.get(id=obs_id).author
+    user_email = User.objects.get(username= get_user).email
+    send_email(user_email ,'in progress')
     messages.success(request, f'issue assigned to you successfully')
     return redirect('open-reports')
+
+def send_email(email, status):
+    send_mail(
+    'Your report status has been updated',
+    'Your report has been moved to status {}'.format(status),
+    'team18projectdjango@gmail.com',
+    [email],
+    fail_silently=True,
+    )
