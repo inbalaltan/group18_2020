@@ -102,3 +102,8 @@ a.article-title:hover {
 .text {
   text-align: right;
 }
+
+.table1 {
+max-width: 95%;
+border-collapse: collapse;
+}

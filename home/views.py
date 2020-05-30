@@ -8,6 +8,8 @@ from django.views.generic import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from pbkdf2 import crypt
+
 def home(request):
     var = {'posts': Post.objects.all().order_by('-date_posted')}
     return render(request, 'home/home.html', var) 
@@ -94,3 +96,17 @@ def send_email(email, status):
     [email],
     fail_silently=True,
     )
+
+class fieldsUpdate(LoginRequiredMixin, UpdateView):
+    model = User
+    template_name = 'home/update_fields_form.html'
+    fields = '__all__'
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+@login_required
+def update_fields(request):
+    if request.user.is_staff:
+        var = {'users':User.objects.all()}
+        return render(request, 'home/update_fields.html',var)
+    raise Http404

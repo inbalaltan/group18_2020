@@ -14,10 +14,12 @@
             </div>
             <h3>{{ mifga.title }}</h3>
             <p class="article-content">{{ mifga.content }}</p>
+            {% if mifga.comment %}
             <div class="alert alert-info" role="alert">
               <h7><u><B> Comment: </B> </u></h7>      
             <p class="article-content">{{ mifga.comment }}</p>
           </div>
+          {% endif %}
         </article>
     {% endfor %}
 {% endblock content %}

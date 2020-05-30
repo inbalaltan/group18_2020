@@ -2,10 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <!-- Required meta tags -->
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -37,6 +38,7 @@
               {% if user.is_staff%}
               <a class="nav-item nav-link" href="{% url 'open-reports' %}">Open Reportes</a>
               <a class="nav-item nav-link" href="{% url 'my-issues' %}">My Issues</a>
+              <a class="nav-item nav-link" href="{% url 'update-fields' %}">Update user info</a>
               {% endif %}
             </div>
             <!-- Navbar Right Side -->
@@ -54,8 +56,8 @@
       </nav>
     </header>
     <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
+      <div class="row" >
+        <div class="col-sm-8">
           {% if messages %}
             {% for message in messages %}
               <div class="alert alert-{{message.tags}}">
@@ -63,9 +65,10 @@
               </div>
               {% endfor %}
           {% endif %}
+          
           {% block content %}{% endblock %}
         </div>
-        <div class="col-md-4">
+        <div class="col-sm-4">
           <div class="content-section">
             <h4>Services</h4>
             <p class='text-muted'>
