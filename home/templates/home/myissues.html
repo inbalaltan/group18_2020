@@ -19,7 +19,7 @@
               <h7><u><B> Comment: </B> </u></h7>      
             <p class="article-content">{{ mifga.comment }}</p>
           </div>
-            <a class="btn1 btn-secondary btn-sm mt-1 mb-1" href="{% url 'my-issues-update' mifga.id %}">Update Comment</a>
+            <a class="btn1 btn-secondary btn-sm mt-1 mb-1" href="{% url 'subscribe' mifga.id %}">Update Comment</a>
             {% if mifga.status == "in progress"%}
             <form method="POST">
               {% csrf_token %}

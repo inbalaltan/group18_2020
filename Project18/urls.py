@@ -33,5 +33,6 @@ urlpatterns = [
     path('mifga/', mifga_views.mifga, name='mifga'),
     path('userissues/', user_views.userissues, name='user-issues'),   
     path('all_reports/', user_views.all_reports, name='all-reports'),   
+    # path('subscribe', user_views.subscribe, name='subscribe'),  
     path('', include('home.urls')),
 ]

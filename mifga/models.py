@@ -25,8 +25,12 @@ class Mifga(models.Model):
     obs_title = models.CharField(max_length = 255,choices=obs_choices, default='אחר')
     agent_att = models.ForeignKey(User,on_delete = models.CASCADE,related_name="Mifga.author+",default = "1")
     comment = models.TextField(default='')
+    subscribed_to_issue = models.TextField(default='')
 
     def get_absolute_url(self):
         return reverse('my-issues')
+
+    def __str__(self):
+        return self.title
 
 

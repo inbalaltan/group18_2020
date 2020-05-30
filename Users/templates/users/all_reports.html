@@ -1,7 +1,8 @@
 {% extends "home/base.html" %}
 {% block content %}
+
     {% for mifga in mifgas %}
-        <article class="media content-section">
+    <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
               <small class="text-muted">#{{ mifga.id }}, </small>
@@ -25,6 +26,12 @@
             <p class="article-content">{{ mifga.comment }}</p>
           </div>
           {% endif %}
+          <form method="POST">
+            {% csrf_token %}
+              <input value="{{ mifga.id }}" name= "id" hidden>
+              <button class = "btn btn-danger btn-sm mt-1 mb-1" type="submit" class="btn" value="Click" name= "stat">Subscribe to issue</button>
+          </form>
+
         </article>
     {% endfor %}
 {% endblock content %}
