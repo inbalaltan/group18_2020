@@ -8,7 +8,6 @@ from django.views.generic import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from pbkdf2 import crypt
 
 def home(request):
     var = {'posts': Post.objects.all().order_by('-date_posted')}
