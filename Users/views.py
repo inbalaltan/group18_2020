@@ -30,3 +30,7 @@ def profile(request):
 def userissues(request):
     var = {'mifgas': Mifga.objects.filter(author = request.user).order_by("-status", '-date_posted')}
     return render(request, 'users/userissues.html',var)
+
+def all_reports(request):
+    var = {'mifgas': Mifga.objects.order_by( '-id')}
+    return render(request, 'users/all_reports.html',var)    

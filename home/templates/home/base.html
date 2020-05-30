@@ -73,6 +73,7 @@
             <h4>Services</h4>
             <p class='text-muted'>
               <ul class="list-group">
+                <a class="list-group-item list-group-item-light btn-light" href ="{% url 'all-reports' %}">View all Reports</a>
                 <a class="list-group-item list-group-item-light btn-light" href ="{% url 'mifga' %}">Report obstacle</a>
                 {%if not user.is_staff%}
                 <a class="list-group-item list-group-item-light btn-light" href ="{% url 'user-issues' %}">My Issues</a>

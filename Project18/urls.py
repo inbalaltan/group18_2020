@@ -31,6 +31,7 @@ urlpatterns = [
     path('password-reset-complete/',auth_views.PasswordResetCompleteView.as_view(template_name='users/reset_password_complete.html'), name='password_reset_complete'),
     path('profile/', user_views.profile, name='profile'),
     path('mifga/', mifga_views.mifga, name='mifga'),
-    path('userissues/', user_views.userissues, name='user-issues'),    
+    path('userissues/', user_views.userissues, name='user-issues'),   
+    path('all_reports/', user_views.all_reports, name='all-reports'),   
     path('', include('home.urls')),
 ]
