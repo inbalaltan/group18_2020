@@ -6,9 +6,9 @@ class obsReport(forms.ModelForm):
     alphanumeric = RegexValidator(r'^[A-Za-zא-ת]')
     digits = RegexValidator(r'^[0-9]')
     title = forms.CharField(validators=[alphanumeric],help_text='only letters')
-    street = forms.CharField(validators=[alphanumeric],help_text='only letters')
+    # street = forms.CharField(validators=[alphanumeric],help_text='only letters')
     house_number = forms.CharField(validators=[digits],help_text='only digits')
     class Meta:
         model = Mifga
-        fields = ['title','street', 'house_number','neighborhood','obs_title','content']
+        fields = ['title', 'content','neighborhood','obs_title','house_number']
         widgets = {'neighborhood': forms.HiddenInput()}
