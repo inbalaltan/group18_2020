@@ -30,9 +30,10 @@ urlpatterns = [
     path('password-reset-confirm/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='users/reset_password_confirm.html'), name='password_reset_confirm'),
     path('password-reset-complete/',auth_views.PasswordResetCompleteView.as_view(template_name='users/reset_password_complete.html'), name='password_reset_complete'),
     path('profile/', user_views.profile, name='profile'),
+    path('password/', user_views.change_password, name='change_password'),
+	path('<int:pk>/updateuser/', user_views.user_dataUpdate.as_view(success_url="/profile/"), name="update-user-form"),
     path('mifga/', mifga_views.mifga, name='mifga'),
     path('userissues/', user_views.userissues, name='user-issues'),   
     path('all_reports/', user_views.all_reports, name='all-reports'),   
-    # path('subscribe', user_views.subscribe, name='subscribe'),  
     path('', include('home.urls')),
 ]

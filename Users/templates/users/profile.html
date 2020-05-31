@@ -5,8 +5,14 @@
       <div class="media"> 
         <div class="media-body">
           <h4>Logged in as: {{ user.username }}</h4>
-          <p class="text-secondary"><b>Name:</b> {{ user.first_name}} {{user.last_name}} </p>
-          <p class="text-secondary"><b>email:</b> {{ user.email }}</p>
+          <div class="text-secondary">
+            <b>Name:</b> {{ user.first_name}} {{user.last_name}} 
+            <br>
+            <b>email:</b> {{ user.email }}
+            <br><br>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'change_password'%}">Change password</a>
+            <a class="btn1 btn-secondary btn-sm mt-1 mb-1" href="{% url 'update-user-form' request.user.id%}">Change email & name </a>
+          </div>
         </div>
       </div>
       <!-- FORM HERE -->

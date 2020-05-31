@@ -26,12 +26,18 @@
             <p class="article-content">{{ mifga.comment }}</p>
           </div>
           {% endif %}
+          {% if user.is_authenticated %}
+          {% if request.user != mifga.author %}
           <form method="POST">
             {% csrf_token %}
               <input value="{{ mifga.id }}" name= "id" hidden>
-              <button class = "btn btn-danger btn-sm mt-1 mb-1" type="submit" class="btn" value="Click" name= "stat">Subscribe to issue</button>
+              <button class = "btn1 btn btn-danger btn-sm mt-1 mb-1" type="submit" value="Click" name= "stat">Subscribe to issue</button>
           </form>
-
+          {% endif %}
+          {%else%}
+          <a class="btn1 btn-success btn-sm mt-1 mb-1" href="{% url 'login' %}">Login to subscribe this issue!</a> 
+          {% endif %}
+          
         </article>
     {% endfor %}
 {% endblock content %}

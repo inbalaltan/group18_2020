@@ -8,7 +8,11 @@ from .forms import UserRegisterForm
 from mifga.models import Mifga
 from django.http import HttpResponse
 from itertools import chain
-
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import UpdateView
+from django.contrib.auth.models import User
 
 def register(request):
     if request.method == 'POST':
@@ -56,11 +60,25 @@ def all_reports(request):
     var = {'mifgas': Mifga.objects.order_by("-status", '-date_posted')}
     return render(request, 'users/all_reports.html',var)   
 
-# def subscribe(request):
-#     id = request.POST.get("id")
-#     print(f"\n\n\n\n\n\n{id}\n\n\n\n\n")
-#     mifga = Mifga.objects.filter(id = id)
-#     current = Mifga.objects.get(id=id).subscribed_to_issue
-#     current += request.user
-#     mifga.objects.update(subscirbed_to_issue = current)
-#     messages.success(request, f'subscription is successfull')
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  
+            messages.success(request, 'Your password was successfully updated')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'users/change_password.html', {'form': form})
+
+
+class user_dataUpdate(LoginRequiredMixin, UpdateView):
+    model = User
+    template_name = 'users/update_user_form.html'
+    fields = ['email','first_name','last_name']
+    def form_valid(self, form):
+        return super().form_valid(form)
