@@ -3,13 +3,13 @@
 
     <form action="{% url 'all-reports' %}" method="post">
       {% csrf_token %}
-      <select id="sub" name="sub" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <option value="allstatus"> All Statuses</option>
-          <option value="closed"> closed</option>
-          <option value="open">open</option>
-          <option value="in progress">in progress</option>
+      <select class="btn btn-outline-info mt-1 mb-1" id="sub" name="sub" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <option class="dropdown-item" value="allstatus"> All Statuses</option>
+          <option class="dropdown-item" value="closed"> closed</option>
+          <option class="dropdown-item" value="open">open</option>
+          <option class="dropdown-item" value="in progress">in progress</option>
       </select>
-      <input type="submit" value="submit">
+      <input class="btn btn-info mt-1 mb-1" type="submit" value="submit">
     </form>
 
 

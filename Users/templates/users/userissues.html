@@ -3,18 +3,18 @@
 
       <form action="{% url 'user-issues' %}" method="post">
         {% csrf_token %}
-        <select id="sub" name="sub" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <select class="btn btn-outline-info mt-1 mb-1" id="sub" name="sub" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <option value="allstatus"> All Statuses</option>
             <option value="closed"> closed</option>
             <option value="open">open</option>
             <option value="in progress">in progress</option>
         </select>
-        <select id="subb" name="subb" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <select class="btn btn-outline-info mt-1 mb-1" id="subb" name="subb" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <option value="alll"> All Reports</option>
             <option value="my"> My Reports</option>
             <option value="subsc">Subscribe Reports</option>
         </select>
-        <input type="submit" value="submit">
+        <input class="btn btn-outline-info mt-1 mb-1" type="submit" value="submit">
       </form>
 
     {% for mifga in mifgas %}
