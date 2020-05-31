@@ -1,6 +1,18 @@
 {% extends "home/base.html" %}
 {% block content %}
 
+    <form action="{% url 'all-reports' %}" method="post">
+      {% csrf_token %}
+      <select id="sub" name="sub" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <option value="allstatus"> All Statuses</option>
+          <option value="closed"> closed</option>
+          <option value="open">open</option>
+          <option value="in progress">in progress</option>
+      </select>
+      <input type="submit" value="submit">
+    </form>
+
+
     {% for mifga in mifgas %}
     <article class="media content-section">
           <div class="media-body">

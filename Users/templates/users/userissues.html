@@ -1,7 +1,21 @@
 {% extends "home/base.html" %}
 {% block content %}
 
-
+      <form action="{% url 'user-issues' %}" method="post">
+        {% csrf_token %}
+        <select id="sub" name="sub" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <option value="allstatus"> All Statuses</option>
+            <option value="closed"> closed</option>
+            <option value="open">open</option>
+            <option value="in progress">in progress</option>
+        </select>
+        <select id="subb" name="subb" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <option value="alll"> All Reports</option>
+            <option value="my"> My Reports</option>
+            <option value="subsc">Subscribe Reports</option>
+        </select>
+        <input type="submit" value="submit">
+      </form>
 
     {% for mifga in mifgas %}
         <article class="media content-section">
@@ -9,6 +23,7 @@
             <div class="article-metadata">
               <small class="text-muted">#{{ mifga.id }}, </small>
               <small class="text-muted">date posted: {{ mifga.date_posted|date:" d-F-Y" }}</small>
+              <small class="text-muted">date posted: {{ mifga.author }}</small>
               {% if mifga.status == 'closed' %}
               <strong class="stat text-danger"> {{ mifga.status }} </b></strong>
               {% else %}

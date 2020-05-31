@@ -34,11 +34,36 @@ def profile(request):
 def userissues(request):
     mifgas  = Mifga.objects.all()
     obs_to_add = []
-    
     for obj in mifgas:
         temp = f'{obj.subscribed_to_issue}'
         if(f'{request.user}' in temp):
             obs_to_add.append(obj.id)
+    qs3=[]
+
+    if(request.POST.get('sub') and request.POST.get('sub')!= "allstatus"):
+        sta = request.POST.get('sub', 'default_if_not_found_value')
+        rep = request.POST.get('subb', 'default_if_not_found_value')
+        if (rep=="alll" or rep=="my"):
+            var = Mifga.objects.filter(author = request.user).filter(status=sta)
+            qs3 = var
+        if (rep=="alll" or rep=="subsc"):
+            for id in obs_to_add:
+                the_dict = Mifga.objects.filter(id = id).filter(status=sta)
+                qs3 = list(chain(qs3,the_dict))  
+        return render(request, 'users/userissues.html',{'mifgas': qs3})
+    
+    elif(request.POST.get('sub') and request.POST.get('sub')== "allstatus"):
+        sta = request.POST.get('sub', 'default_if_not_found_value')
+        rep = request.POST.get('subb', 'default_if_not_found_value')
+        if (rep=="alll" or rep=="my"):
+            var = Mifga.objects.filter(author = request.user)
+            qs3 = var
+        if (rep=="alll" or rep=="subsc"):
+            for id in obs_to_add:
+                the_dict = Mifga.objects.filter(id = id)
+                qs3 = list(chain(qs3,the_dict))  
+        return render(request, 'users/userissues.html',{'mifgas': qs3})
+
     var = Mifga.objects.filter(author = request.user)
     qs3 = var
     for id in obs_to_add:
@@ -46,7 +71,14 @@ def userissues(request):
         qs3 = list(chain(qs3,the_dict))
     return render(request, 'users/userissues.html',{'mifgas': qs3})
 
+
+
+
 def all_reports(request):
+    if(request.POST.get('sub') and request.POST.get('sub')!= "allstatus"):
+        sta = request.POST.get('sub', 'default_if_not_found_value')
+        var = {'mifgas': Mifga.objects.filter(status=sta).order_by("-status", '-date_posted')}
+        return render(request, 'users/all_reports.html',var)  
     if(request.POST.get('stat')):
         id = request.POST.get("id")
         mifga = Mifga.objects.get(id = id).subscribed_to_issue
@@ -56,9 +88,10 @@ def all_reports(request):
             messages.success(request, f'subscription is successfull')
         else:
             messages.error(request, 'You are already subscribed to this issue')
-        redirect("all-reports")
+        redirect("all-reports") 
     var = {'mifgas': Mifga.objects.order_by("-status", '-date_posted')}
-    return render(request, 'users/all_reports.html',var)   
+    return render(request, 'users/all_reports.html',var)  
+
 
 @login_required
 def change_password(request):
