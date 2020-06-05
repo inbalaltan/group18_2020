@@ -18,7 +18,9 @@ pipeline {
 					sh 'python3 manage.py makemigrations --merge'
 					sh 'python3 manage.py migrate'
 					sh 'python3 manage.py test --with-coverage'
-					sh 'python3 -m pyflakes "."'
+					sh 'python3 -m pyflakes home/'
+					sh 'python3 -m pyflakes mifga/'
+					sh 'python3 -m pyflakes Users/'
 		    }
 			}
         }
