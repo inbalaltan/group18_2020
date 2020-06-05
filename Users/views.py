@@ -2,11 +2,9 @@
 from __future__ import unicode_literals
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
 from mifga.models import Mifga
-from django.http import HttpResponse
 from itertools import chain
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -85,7 +83,7 @@ def all_reports(request):
         if (f"{request.user}" not in f"{mifga}" ):
             temp = f"{mifga} {request.user}"
             Mifga.objects.filter(id=id).update(subscribed_to_issue = temp)
-            messages.success(request, f'subscription is successfull')
+            messages.success(request, 'subscription is successfull')
         else:
             messages.error(request, 'You are already subscribed to this issue')
         redirect("all-reports") 

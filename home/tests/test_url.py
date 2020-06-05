@@ -1,8 +1,7 @@
 from django.test import SimpleTestCase
 from django.urls import reverse,resolve
-from home.views import help,contact,home,open_reports,myissues,myissuesUpdate
+from home.views import help,contact,home,open_reports,myissues
 import re
-from django.core.validators import RegexValidator
 import random
 
 class TestUrls(SimpleTestCase):

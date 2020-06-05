@@ -2,9 +2,8 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from mifga.models import Mifga
 from django.contrib.auth.models import User
-from home.views import take_obs,close_issue,change_assign,change_subject
+from home.views import take_obs,close_issue,change_subject
 from django.test.client import RequestFactory
-from django.contrib import messages
 from django.contrib.messages.middleware import MessageMiddleware
 from django.contrib.sessions.middleware import SessionMiddleware
 

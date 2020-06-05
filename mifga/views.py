@@ -21,13 +21,13 @@ def mifga(request):
                     var.street = street
                     var.save()
                 else:
-                    messages.error(request,f"unexpected error with neighborhood")
+                    messages.error(request,"unexpected error with neighborhood")
                     redirect('mifga')
                 form.save()
-                messages.success(request, f'your report has been submmited')
+                messages.success(request, 'your report has been submmited')
                 return redirect('user-issues') 
             else:
-                messages.error(request, f'Please enter valid address')
+                messages.error(request, 'Please enter valid address')
     form = obsReport 
     val = json.dumps(autocomplete_addresses())
     var ={'form': form, 'validate': val}

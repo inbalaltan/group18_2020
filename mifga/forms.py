@@ -1,7 +1,7 @@
 from django import forms
 from .models import Mifga
 from django.core.validators import RegexValidator
-from django.contrib.auth.models import User
+
 class obsReport(forms.ModelForm):
     alphanumeric = RegexValidator(r'^[A-Za-zא-ת]')
     digits = RegexValidator(r'^[0-9]')

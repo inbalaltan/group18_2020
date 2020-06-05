@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, Http404
+from django.http import Http404
 from .models import Post
 from mifga.models import Mifga
 from django.contrib import messages
@@ -63,7 +63,7 @@ def take_obs(request, obs_id):
     get_user = Mifga.objects.get(id=obs_id).author
     user_email = User.objects.get(username= get_user).email
     send_email(user_email ,'in progress')
-    messages.success(request, f'issue assigned to you successfully')
+    messages.success(request, 'issue assigned to you successfully')
     return redirect('open-reports')
 
 def close_issue(request, obs_id):
@@ -71,12 +71,12 @@ def close_issue(request, obs_id):
     get_user = Mifga.objects.get(id=obs_id).author
     user_email = User.objects.get(username= get_user).email
     send_email(user_email ,'closed')
-    messages.success(request, f'issue closed successfully')
+    messages.success(request, 'issue closed successfully')
     return redirect('my-issues')
 
 def change_subject(request, obs_id, subj):
     Mifga.objects.filter(id=obs_id).update(obs_title = subj)
-    messages.success(request, f'issue subject changed successfully')
+    messages.success(request, 'issue subject changed successfully')
     return redirect('my-issues')
 
 def change_assign(request, obs_id, worki):
@@ -84,7 +84,7 @@ def change_assign(request, obs_id, worki):
     get_user = Mifga.objects.get(id=obs_id).author
     user_email = User.objects.get(username= get_user).email
     send_email(user_email ,'in progress')
-    messages.success(request, f'issue assigned to you successfully')
+    messages.success(request, 'issue assigned to you successfully')
     return redirect('open-reports')
 
 def send_email(email, status):

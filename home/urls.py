@@ -1,8 +1,6 @@
-from django.conf.urls import url
 from django.urls import path
 from . import views
 from .views import myissuesUpdate, fieldsUpdate
-import Users
 
 urlpatterns = [
 				path('help/',views.help, name="help-page"),

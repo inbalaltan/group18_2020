@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from mifga.models import Mifga
 from django.contrib.auth.models import User
-from mifga.views import validate_addresses
+
 class TestViews(TestCase):
     def setUp(self):
         self.client = Client()
