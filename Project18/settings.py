@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 from django.contrib.messages import constants as messages
 import os
+import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_nose',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +147,17 @@ EMAIL_HOST_PASSWORD = 'danielby13'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Tell nose to measure coverage on the 'foo' and 'bar' apps
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=home,mifga,Users',
+]
+
+TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
+if TESTING:
+    EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
