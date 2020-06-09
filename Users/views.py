@@ -69,9 +69,6 @@ def userissues(request):
         qs3 = list(chain(qs3,the_dict))
     return render(request, 'users/userissues.html',{'mifgas': qs3})
 
-
-
-
 def all_reports(request):
     if(request.POST.get('sub') and request.POST.get('sub')!= "allstatus"):
         sta = request.POST.get('sub', 'default_if_not_found_value')
