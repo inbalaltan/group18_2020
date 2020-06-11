@@ -109,3 +109,4 @@ def update_fields(request):
         var = {'users':User.objects.all()}
         return render(request, 'home/update_fields.html',var)
     raise Http404
+

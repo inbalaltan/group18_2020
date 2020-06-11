@@ -12,5 +12,4 @@ urlpatterns = [
 				path('<int:pk>/updatefields/', fieldsUpdate.as_view(success_url="/updatefields/"), name="update-fields-form"),
 				path('updatefields/',views.update_fields, name="update-fields"),
 				path('admin/',views.myissues, name="admin-db"),
-				
 			      ]
