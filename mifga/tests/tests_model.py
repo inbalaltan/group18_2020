@@ -121,4 +121,3 @@ class MifgaModelTest(TestCase):
             mifga.save()
         except Exception as err:
             self.assertEqual(str(err), "NOT NULL constraint failed: mifga_mifga.house_number")
-
