@@ -22,8 +22,8 @@
           <div class="media-body">
             <div class="article-metadata">
               <small class="text-muted">#{{ mifga.id }}, </small>
-              <small class="text-muted">date posted: {{ mifga.date_posted|date:" d-F-Y" }}</small>
-              <small class="text-muted">date posted: {{ mifga.author }}</small>
+              <small class="text-muted">date posted: {{ mifga.date_posted|date:" d-F-Y" }},</small>
+              <small class="text-muted">author: {{ mifga.author }}</small>
               {% if mifga.status == 'closed' %}
               <strong class="stat text-danger"> {{ mifga.status }} </b></strong>
               {% else %}

@@ -17,12 +17,7 @@ class EmailTest(TestCase):
         self.id = self.mifga.id
         self.client = Client()
 
-    # def test_send_email(self): 
-    #     send_email(self.user.email, self.mifga.status)
-    #     # assert len(mail.outbox) == 1, "Inbox is not empty"
-    #     self.assertEqual(len(mail.outbox), 1)
-
-    def testThisFails(self):
+    def test_check_email_outbox(self):
         with self.settings(EMAIL_BACKEND='django.core.mail.backends.locmem.EmailBackend'):
             send_email(self.user.email, self.mifga.status)
             time.sleep(0.5)

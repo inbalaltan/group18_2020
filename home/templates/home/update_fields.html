@@ -19,13 +19,15 @@
         </thead>
         <tbody id="myTable">
         {% for user in users%}
-          <tr>
-            <td>{{user.id}}</td>
-            <td>{{user.username}}</td>
-            <td>{{user.first_name}} {{user.last_name}}</td>
-            <td>{{user.email}}</td>
-            <td> <a class="btn1 btn-secondary btn-sm mt-1 mb-1" href="{% url 'update-fields-form' user.id %}">Update User</a> </td>
-          </tr>
+          {%if not user.is_staff%}
+            <tr>
+              <td>{{user.id}}</td>
+              <td>{{user.username}}</td>
+              <td>{{user.first_name}} {{user.last_name}}</td>
+              <td>{{user.email}}</td>
+              <td> <a class="btn1 btn-secondary btn-sm mt-1 mb-1" href="{% url 'update-fields-form' user.id %}">Update User</a> </td>
+            </tr>
+            {%endif%}
           {% endfor %}
         </tbody>
       </table>
