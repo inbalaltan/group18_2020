@@ -25,3 +25,4 @@ class EmailTest(TestCase):
             self.assertEquals(mail.outbox[0].subject, 'Your report status has been updated')
   
 
+

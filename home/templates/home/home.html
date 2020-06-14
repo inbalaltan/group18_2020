@@ -11,9 +11,10 @@
               <span class="badge badge-secondary">New Post</span>
               {% endif %}
             </div>
-            <h3>{{ post.title }}</h3>
+            <div class="text"> 
+            <h5><i><b> {{ post.title }}</b> </i></h5>
             <p class="article-content">{{ post.content }}</p>
-
+          </div>
           </div>
         </article>
     {% endfor %}

@@ -19,7 +19,7 @@
             <div class="article-metadata">
               <small class="text-muted">#{{ mifga.id }}, </small>
               <small class="text-muted">date posted: {{ mifga.date_posted|date:" d-F-Y" }},  </small>
-              <small class="text-muted">Author: {{ mifga.author }}</small>
+              <small class="text-muted">author: {{ mifga.author }}</small>
               {% now "d-F-Y" as today_date %}
               {% if mifga.date_posted|date:"d-F-Y" == today_date  %}
               <span class="badge badge-secondary">New</span>
@@ -30,28 +30,32 @@
               <strong class="stat text-success"><b>{{ mifga.status }} </b></strong>
               {% endif %}
             </div>
-            <h3>{{ mifga.title }}</h3>
+            <div class="text"> 
+              <h5><i><b> {{ mifga.title }}</b> </i></h5>
             <p class="article-content">{{ mifga.content }}</p>
+            <small class="text-muted">כתובת המפגע: {{ mifga.street }} {{mifga.house_number}},בשכונה {{mifga.neighborhood}} </small>
             {% if mifga.comment %}
             <div class="alert alert-info" role="alert">
-              <h7><u><B> Comment: </B> </u></h7>      
+              <h7><u><B>  :תגובת העירייה  </B> </u></h7>      
             <p class="article-content">{{ mifga.comment }}</p>
           </div>
+          </div>
           {% endif %}
-          {% if user.is_authenticated %}
-            {% if not user.is_staff %}
-              {% if request.user != mifga.author %}
-              <form method="POST">
-                {% csrf_token %}
-                  <input value="{{ mifga.id }}" name= "id" hidden>
-                  <button class = "btn1 btn btn-danger btn-sm mt-1 mb-1" type="submit" value="Click" name= "stat">Subscribe to issue</button>
-              </form>
+          {% if mifga.status != 'closed' %}
+            {% if user.is_authenticated %}
+              {% if not user.is_staff %}
+                {% if request.user != mifga.author %}
+                <form method="POST">
+                  {% csrf_token %}
+                    <input value="{{ mifga.id }}" name= "id" hidden>
+                    <button class = "btn1 btn btn-danger btn-sm mt-1 mb-1" type="submit" value="Click" name= "stat">Subscribe to issue</button>
+                </form>
+                {% endif %}
               {% endif %}
+            {%else%}
+                <a class="btn1 btn-success btn-sm mt-1 mb-1" href="{% url 'login' %}">Login to subscribe this issue!</a> 
             {% endif %}
-          {%else%}
-              <a class="btn1 btn-success btn-sm mt-1 mb-1" href="{% url 'login' %}">Login to subscribe this issue!</a> 
           {% endif %}
-          
         </article>
     {% endfor %}
 {% endblock content %}

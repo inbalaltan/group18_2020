@@ -14,12 +14,15 @@
               <strong class="stat text-success"><b>{{ mifga.status }} </b></strong>
               {% endif %}
             </div>
-            <h3>{{ mifga.title }}</h3>
+            <div class="text"> 
+              <h4><i><b> {{ mifga.title }}</b> </i></h4>
             <p class="article-content">{{ mifga.content }}</p>
+            <small class="text-muted">כתובת המפגע: {{ mifga.street }} {{mifga.house_number}},בשכונה {{mifga.neighborhood}} </small>
             <div class="alert alert-info" role="alert">
-              <h7><u><B> Comment: </B> </u></h7>      
+              <h7><u><B> :תגובת העירייה </B> </u></h7>      
             <p class="article-content">{{ mifga.comment }}</p>
           </div>
+        </div>
             <a class="btn1 btn-secondary btn-sm mt-1 mb-1" href="{% url 'my-issues-update' mifga.id %}">Update Comment</a>
             {% if mifga.status == "in progress"%}
             <form method="POST">
@@ -28,7 +31,7 @@
                 <button class = "btn btn-danger btn-sm mt-1 mb-1" type="submit" class="btn" value="Click" name= "stat">Close Issue</button>
             </form>
             
-            <span class=" subj label info"> :שינוי נושא מפגע </span> 
+            <span class="subj label info"> :שינוי נושא מפגע </span> 
             <br>
             <form action="{% url 'my-issues' %}" method="post">
               {% csrf_token %}
