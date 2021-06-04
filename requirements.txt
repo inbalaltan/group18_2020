@@ -1,6 +1,6 @@
 bootstrap4==0.1.0
 coverage==5.1
-Django==3.0.7
+Django==3.1.9
 django-appconf==1.0.4
 django-crispy-forms==1.9.0
 django-nose==1.4.6
